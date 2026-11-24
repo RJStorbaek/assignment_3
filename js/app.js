@@ -6,11 +6,11 @@ const playlistContainer = document.getElementById("playlist");
 playlistContainer.textContent = "Your playlist is empty.";
 
 // Place song card in function
-function renderSongs() {
+function renderSongs(songsToRender) {
   // clear container
   collectionContainer.textContent = "";
   // Make repeating song card
-  for (const song of songs) {
+  for (const song of songsToRender) {
     // create song card
     const songCard = document.createElement("article");
     songCard.classList.add("song-card");
@@ -38,4 +38,11 @@ function renderSongs() {
   }
 }
 // Call function
-renderSongs();
+renderSongs(songs);
+
+// add filter
+
+const filteredSongs = songs.filter(function (song) {
+  return song.duration > 240;
+});
+console.log(filteredSongs);
