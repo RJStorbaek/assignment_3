@@ -45,4 +45,4 @@ renderSongs(songs);
 const filteredSongs = songs.filter(function (song) {
   return song.duration > 240;
 });
-console.log(filteredSongs);
+renderSongs(filteredSongs);
