@@ -42,7 +42,20 @@ renderSongs(songs);
 
 // add filter
 
-const filteredSongs = songs.filter(function (song) {
-  return song.duration > 240;
-});
-renderSongs(filteredSongs);
+const rockFilterButton = document.getElementById("filter-rock");
+console.log(rockFilterButton);
+
+function filterRockSongs() {
+  const filteredSongs = songs.filter(function (song) {
+    return song.genre === "Rock";
+  });
+
+  renderSongs(filteredSongs);
+}
+
+rockFilterButton.addEventListener("click", filterRockSongs);
+
+// const filteredSongs = songs.filter(function (song) {
+//   return song.genre === "Rock";
+// });
+// renderSongs(filteredSongs);
