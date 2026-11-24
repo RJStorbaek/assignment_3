@@ -40,22 +40,19 @@ function renderSongs(songsToRender) {
 // Call function
 renderSongs(songs);
 
-// add filter
+// add filter by genre
 
-const rockFilterButton = document.getElementById("filter-rock");
-console.log(rockFilterButton);
+const genreFilter = document.getElementById("genre-filter");
 
-function filterRockSongs() {
-  const filteredSongs = songs.filter(function (song) {
-    return song.genre === "Rock";
-  });
-
-  renderSongs(filteredSongs);
+function filterByGenre() {
+  if (genreFilter.value === "All") {
+    renderSongs(songs);
+  } else {
+    const filteredSongs = songs.filter(function (song) {
+      return song.genre === genreFilter.value;
+    });
+    renderSongs(filteredSongs);
+  }
 }
 
-rockFilterButton.addEventListener("click", filterRockSongs);
-
-// const filteredSongs = songs.filter(function (song) {
-//   return song.genre === "Rock";
-// });
-// renderSongs(filteredSongs);
+genreFilter.addEventListener("change", filterByGenre);
