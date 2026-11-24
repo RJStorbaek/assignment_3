@@ -7,6 +7,8 @@ playlistContainer.textContent = "Your playlist is empty.";
 
 // Place song card in function
 function renderSongs() {
+  // clear container
+  collectionContainer.textContent = "";
   // Make repeating song card
   for (const song of songs) {
     // create song card
@@ -36,5 +38,4 @@ function renderSongs() {
   }
 }
 // Call function
-renderSongs();
 renderSongs();
