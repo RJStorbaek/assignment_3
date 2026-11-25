@@ -61,7 +61,10 @@ genreFilter.addEventListener("change", filterByGenre);
 const searchInput = document.getElementById("search");
 function searchSongs() {
   const searchedSongs = songs.filter(function (song) {
-    return song.title.toLowerCase().includes(searchInput.value.toLowerCase());
+    return (
+      song.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+      song.artist.toLowerCase().includes(searchInput.value.toLowerCase())
+    );
   });
 
   console.log(searchedSongs);
