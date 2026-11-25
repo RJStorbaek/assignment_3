@@ -1,6 +1,7 @@
 // Retrieve containers for the playlist and the collection
 const collectionContainer = document.getElementById("collection");
 const playlistContainer = document.getElementById("playlist");
+const playlist = [];
 
 // Display empty playlist message
 playlistContainer.textContent = "Your playlist is empty.";
@@ -40,6 +41,15 @@ function renderSongs(songsToRender) {
     const songDuration = document.createElement("p");
     songDuration.textContent = song.duration;
     songCard.appendChild(songDuration);
+
+    // Add "Add to playlist" button
+    const addButton = document.createElement("button");
+    addButton.textContent = "Add to Playlist";
+    songCard.appendChild(addButton);
+    addButton.addEventListener("click", function () {
+      playlist.push(song);
+      console.log(playlist);
+    });
   }
 }
 // Call function
