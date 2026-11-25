@@ -9,6 +9,11 @@ playlistContainer.textContent = "Your playlist is empty.";
 function renderSongs(songsToRender) {
   // clear container
   collectionContainer.textContent = "";
+  //   Add no songs found message
+  if (songsToRender.length === 0) {
+    collectionContainer.textContent =
+      "No songs found. Try another search term or genre.";
+  }
   // Make repeating song card
   for (const song of songsToRender) {
     // create song card
@@ -51,7 +56,7 @@ const searchInput = document.getElementById("search");
 
 searchInput.addEventListener("input", updateCollection);
 
-// declare premises for rendering
+// declare premises for rendering. Used for filtering and sorting
 
 function updateCollection() {
   const searchTerm = searchInput.value.toLowerCase();
@@ -63,16 +68,30 @@ function updateCollection() {
     );
   });
   const selectedSort = sortBy.value;
-  console.log(selectedSort);
-  if (selectedGenre === "All") {
-    renderSongs(searchedSongs);
-  } else {
-    const filteredSongs = searchedSongs.filter(function (song) {
+
+  let filteredSongs = searchedSongs;
+
+  if (selectedGenre !== "All") {
+    filteredSongs = searchedSongs.filter(function (song) {
       return song.genre === selectedGenre;
     });
-
-    renderSongs(filteredSongs);
   }
+
+  if (selectedSort === "length") {
+    filteredSongs.sort(function (a, b) {
+      return a.duration - b.duration;
+    });
+  } else if (selectedSort === "title") {
+    filteredSongs.sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
+  } else if (selectedSort === "artist") {
+    filteredSongs.sort(function (a, b) {
+      return a.artist.localeCompare(b.artist);
+    });
+  }
+
+  renderSongs(filteredSongs);
 }
 
 // Add sorting function
