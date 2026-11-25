@@ -47,7 +47,12 @@ function renderSongs(songsToRender) {
     addButton.textContent = "Add to Playlist";
     songCard.appendChild(addButton);
     addButton.addEventListener("click", function () {
-      playlist.push(song);
+      const alreadyExists = playlist.some(function (playlistSong) {
+        return song.id === playlistSong.id;
+      });
+      if (!alreadyExists) {
+        playlist.push(song);
+      }
       console.log(playlist);
     });
   }
