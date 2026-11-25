@@ -44,36 +44,14 @@ renderSongs(songs);
 
 const genreFilter = document.getElementById("genre-filter");
 
-function filterByGenre() {
-  if (genreFilter.value === "All") {
-    renderSongs(songs);
-  } else {
-    const filteredSongs = searchedSongs.filter(function (song) {
-      return song.genre === selectedGenre;
-    });
-    renderSongs(filteredSongs);
-  }
-}
-
 genreFilter.addEventListener("change", updateCollection);
 
 // add search function for song title and artist
 const searchInput = document.getElementById("search");
-function searchSongs() {
-  const searchTerm = searchInput.value.toLowerCase();
-  const searchedSongs = songs.filter(function (song) {
-    return (
-      song.title.toLowerCase().includes(searchTerm) ||
-      song.artist.toLowerCase().includes(searchTerm)
-    );
-  });
-
-  renderSongs(searchedSongs);
-}
 
 searchInput.addEventListener("input", updateCollection);
 
-// Make search and genre not override each other
+// declare premises for rendering
 
 function updateCollection() {
   const searchTerm = searchInput.value.toLowerCase();
@@ -84,6 +62,8 @@ function updateCollection() {
       song.artist.toLowerCase().includes(searchTerm)
     );
   });
+  const selectedSort = sortBy.value;
+  console.log(selectedSort);
   if (selectedGenre === "All") {
     renderSongs(searchedSongs);
   } else {
@@ -94,3 +74,7 @@ function updateCollection() {
     renderSongs(filteredSongs);
   }
 }
+
+// Add sorting function
+const sortBy = document.getElementById("sort-by");
+sortBy.addEventListener("change", updateCollection);
