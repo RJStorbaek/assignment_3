@@ -7,3 +7,7 @@ For most of the remaining JavaScript functionality, I used ChatGPT to better und
 ChatGPT also provided substantial assistance with CSS due to time constraints. It suggested a simple layout and colour scheme and provided CSS examples, allowing me to spend less time planning the layout.
 
 I also used ChatGPT to troubleshoot errors and proofread my work.
+
+https://github.com/RJStorbaek/assignment_3/
+
+https://rjstorbaek.github.io/assignment_3/
