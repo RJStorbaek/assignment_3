@@ -1,7 +1,7 @@
 // Retrieve containers for the playlist and the collection
 const collectionContainer = document.getElementById("collection");
 const playlistContainer = document.getElementById("playlist");
-const playlist = [];
+const playlist = JSON.parse(localStorage.getItem("playlist")) || [];
 
 // Render playlist cards
 function renderPlaylist() {
@@ -32,7 +32,7 @@ function renderPlaylist() {
     playlistCard.appendChild(songArtist);
 
     const songDuration = document.createElement("p");
-    songDuration.textContent = song.duration;
+    songDuration.textContent = formatDuration(song.duration);
     playlistCard.appendChild(songDuration);
 
     // Add "Remove from playlist" button
@@ -45,13 +45,14 @@ function renderPlaylist() {
       });
       if (songIndex !== -1) {
         playlist.splice(songIndex, 1);
+        savePlaylist();
         renderPlaylist();
       }
     });
   }
   //   Show total duration of playlist
   const playlistDuration = document.createElement("p");
-  playlistDuration.textContent = `Total duration: ${totalDuration} seconds`;
+  playlistDuration.textContent = `Total duration: ${formatDuration(totalDuration)} seconds`;
   playlistContainer.appendChild(playlistDuration);
 }
 // Place song card in function
@@ -88,7 +89,7 @@ function renderSongs(songsToRender) {
 
     // Make p element for duration
     const songDuration = document.createElement("p");
-    songDuration.textContent = song.duration;
+    songDuration.textContent = formatDuration(song.duration);
     songCard.appendChild(songDuration);
 
     // Add "Add to playlist" button
@@ -101,6 +102,7 @@ function renderSongs(songsToRender) {
       });
       if (!alreadyExists) {
         playlist.push(song);
+        savePlaylist();
         renderPlaylist();
       }
     });
@@ -162,3 +164,15 @@ function updateCollection() {
 // Add sorting function
 const sortBy = document.getElementById("sort-by");
 sortBy.addEventListener("change", updateCollection);
+
+//  Format time
+function formatDuration(duration) {
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+// Local storage. Saving the playlist in the browser
+function savePlaylist() {
+  localStorage.setItem("playlist", JSON.stringify(playlist));
+}

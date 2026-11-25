@@ -1,0 +1,1 @@
+With time formatting and local storage, I had massive help from ChatGPT to finish, with it pretty much providing the solutions. Outside of those two js elements I used ChatGPT to better understand the elements, and then implementing the code after I had some understanding of it.

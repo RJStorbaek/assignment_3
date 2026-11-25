@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <header><h1>Music playlist app</h1></header>
-    <main>
-      <section>
+    <header class="header"><h1>Music playlist app</h1></header>
+    <main class="main">
+      <section class="collection">
         <h2>Music collection</h2>
         <label for="search">Search</label>
         <input type="search" id="search" placeholder="Song name, artist" />
@@ -30,11 +30,11 @@
           <option value="artist">Artist (A-Z)</option>
           <option value="length">Length</option>
         </select>
-        <div id="collection"></div>
+        <div id="collection" class="collection__songs"></div>
       </section>
-      <section>
+      <section class="playlist">
         <h2>My playlist</h2>
-        <div id="playlist"></div>
+        <div id="playlist" class="playlist__songs"></div>
       </section>
     </main>
     <footer>
