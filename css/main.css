@@ -32,6 +32,6 @@
 
 @media (min-width: 1024px) {
   .main {
-    grid-template-columns: minmax(0, 2fr) minax(0, 1fr);
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   }
 }

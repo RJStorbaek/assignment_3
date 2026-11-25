@@ -52,7 +52,7 @@ function renderPlaylist() {
   }
   //   Show total duration of playlist
   const playlistDuration = document.createElement("p");
-  playlistDuration.textContent = `Total duration: ${formatDuration(totalDuration)} seconds`;
+  playlistDuration.textContent = `Total duration: ${formatDuration(totalDuration)}`;
   playlistContainer.appendChild(playlistDuration);
 }
 // Place song card in function
