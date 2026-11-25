@@ -57,17 +57,18 @@ function filterByGenre() {
 
 genreFilter.addEventListener("change", filterByGenre);
 
-// add search function for song title
+// add search function for song title and artist
 const searchInput = document.getElementById("search");
 function searchSongs() {
+  const searchTerm = searchInput.value.toLowerCase();
   const searchedSongs = songs.filter(function (song) {
     return (
-      song.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-      song.artist.toLowerCase().includes(searchInput.value.toLowerCase())
+      song.title.toLowerCase().includes(searchTerm) ||
+      song.artist.toLowerCase().includes(searchTerm)
     );
   });
 
-  console.log(searchedSongs);
+  renderSongs(searchedSongs);
 }
 
 searchInput.addEventListener("input", searchSongs);
