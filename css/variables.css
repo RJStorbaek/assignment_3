@@ -1,0 +1,12 @@
+:root {
+  --font-main: "Inter", sans-serif;
+  --background-color: #121212;
+  --section-color: #181818;
+  --card-color: #252525;
+  --text-color: #ffffff;
+  --secondary-text-color: #b3b3b3;
+  --accent-color: #1ed760;
+  --border-color: #383838;
+  --border-radius: 8px;
+  --button-hover-color: #39e57a;
+}

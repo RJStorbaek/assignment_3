@@ -1,0 +1,54 @@
+.collection label {
+  display: block;
+  margin-top: 1 rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-text-color);
+}
+
+.collection input,
+.collection select {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--card-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+.collection input:focus,
+.collection select:focus {
+  outline: 2px solid var(--accent-color);
+}
+
+.song-card button,
+.playlist-card button {
+  padding: 0.75 rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.song-card button {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border: 1px solid var(--accent-color);
+}
+
+.song-card button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.playlist-card button {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--secondary-text-color);
+}
+
+.playlist-card button:hover {
+  background-color: var(--border-color);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 3px;
+}
