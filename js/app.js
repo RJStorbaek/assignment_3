@@ -3,13 +3,37 @@ const collectionContainer = document.getElementById("collection");
 const playlistContainer = document.getElementById("playlist");
 const playlist = [];
 
-// Display empty playlist message
-playlistContainer.textContent = "Your playlist is empty.";
+// Render playlist cards
+function renderPlaylist() {
+  // clear container
+  playlistContainer.textContent = "";
+  // Display empty playlist message
+  if (playlist.length === 0) {
+    playlistContainer.textContent = "Your playlist is empty.";
+  }
+  for (const song of playlist) {
+    const playlistCard = document.createElement("article");
+    playlistCard.classList.add("playlist-card");
+    playlistContainer.appendChild(playlistCard);
 
+    const songTitle = document.createElement("h3");
+    songTitle.textContent = song.title;
+    playlistCard.appendChild(songTitle);
+
+    const songArtist = document.createElement("p");
+    songArtist.textContent = song.artist;
+    playlistCard.appendChild(songArtist);
+
+    const songDuration = document.createElement("p");
+    songDuration.textContent = song.duration;
+    playlistCard.appendChild(songDuration);
+  }
+}
 // Place song card in function
 function renderSongs(songsToRender) {
   // clear container
   collectionContainer.textContent = "";
+
   //   Add no songs found message
   if (songsToRender.length === 0) {
     collectionContainer.textContent =
@@ -52,8 +76,8 @@ function renderSongs(songsToRender) {
       });
       if (!alreadyExists) {
         playlist.push(song);
+        renderPlaylist();
       }
-      console.log(playlist);
     });
   }
 }
