@@ -48,14 +48,14 @@ function filterByGenre() {
   if (genreFilter.value === "All") {
     renderSongs(songs);
   } else {
-    const filteredSongs = songs.filter(function (song) {
-      return song.genre === genreFilter.value;
+    const filteredSongs = searchedSongs.filter(function (song) {
+      return song.genre === selectedGenre;
     });
     renderSongs(filteredSongs);
   }
 }
 
-genreFilter.addEventListener("change", filterByGenre);
+genreFilter.addEventListener("change", updateCollection);
 
 // add search function for song title and artist
 const searchInput = document.getElementById("search");
@@ -71,4 +71,26 @@ function searchSongs() {
   renderSongs(searchedSongs);
 }
 
-searchInput.addEventListener("input", searchSongs);
+searchInput.addEventListener("input", updateCollection);
+
+// Make search and genre not override each other
+
+function updateCollection() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const selectedGenre = genreFilter.value;
+  const searchedSongs = songs.filter(function (song) {
+    return (
+      song.title.toLowerCase().includes(searchTerm) ||
+      song.artist.toLowerCase().includes(searchTerm)
+    );
+  });
+  if (selectedGenre === "All") {
+    renderSongs(searchedSongs);
+  } else {
+    const filteredSongs = searchedSongs.filter(function (song) {
+      return song.genre === selectedGenre;
+    });
+
+    renderSongs(filteredSongs);
+  }
+}
