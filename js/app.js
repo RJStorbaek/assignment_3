@@ -7,11 +7,18 @@ const playlist = [];
 function renderPlaylist() {
   // clear container
   playlistContainer.textContent = "";
+
+  // Add total duration to playlist
+  let totalDuration = 0;
+
   // Display empty playlist message
   if (playlist.length === 0) {
     playlistContainer.textContent = "Your playlist is empty.";
   }
+  //   add playlist card elements
   for (const song of playlist) {
+    totalDuration += song.duration;
+
     const playlistCard = document.createElement("article");
     playlistCard.classList.add("playlist-card");
     playlistContainer.appendChild(playlistCard);
@@ -27,7 +34,25 @@ function renderPlaylist() {
     const songDuration = document.createElement("p");
     songDuration.textContent = song.duration;
     playlistCard.appendChild(songDuration);
+
+    // Add "Remove from playlist" button
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove from Playlist";
+    playlistCard.appendChild(removeButton);
+    removeButton.addEventListener("click", function () {
+      const songIndex = playlist.findIndex(function (playlistSong) {
+        return playlistSong.id === song.id;
+      });
+      if (songIndex !== -1) {
+        playlist.splice(songIndex, 1);
+        renderPlaylist();
+      }
+    });
   }
+  //   Show total duration of playlist
+  const playlistDuration = document.createElement("p");
+  playlistDuration.textContent = `Total duration: ${totalDuration} seconds`;
+  playlistContainer.appendChild(playlistDuration);
 }
 // Place song card in function
 function renderSongs(songsToRender) {
@@ -83,6 +108,7 @@ function renderSongs(songsToRender) {
 }
 // Call function
 renderSongs(songs);
+renderPlaylist();
 
 // add filter by genre
 
